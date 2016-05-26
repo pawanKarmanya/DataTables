@@ -52,3 +52,14 @@ Route::get('/models',array(
     'uses'=>'CountryController@modal'
 ));
 Route::post('deletecontinent','CountryController@deletecontinent');
+Route::get('validator',array(
+    'as'=>'validator',
+    'uses'=>'validController@index'
+));
+Route::get('practisemodel',array(
+    'as'=>'practisemodel',
+    'uses'=>'validController@pract'
+));
+Route::post('practise',array(
+    'as'=>'practise',
+    'uses'=> 'validController@create'));
