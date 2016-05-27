@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
         <script src="/bootstrap/js/jquery.js" type="text/javascript"></script>
         <script src="/bootstrap/js/adminjs.js" type="text/javascript"></script>
-        <script src="/bootstrap/js/customjs.js" type="text/javascript"></script>
+<!--        <script src="/bootstrap/js/customjs.js" type="text/javascript"></script>-->
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -418,28 +418,45 @@
 
                                                     <div class="form-group">
                                                         <label for="Name">Country</label>
-                                                        <input type="text" class="form-control" name="Name" id="Name" value="{{$data[0]['Name']}}" >
+                                                        <input type="text" class="form-control" name="Name" id="Name" 
+                                                               data-validation="custom" 
+                                                               data-validation-error-msg="Country name should be Valid"
+                                                               data-validation-regexp="^([a-zA-Z]+[,.]?[ ]?|[a-zA-Z]+['-]?[()]?)+$"
+                                                               value="{{$data[0]['Name']}}" >
                                                         <p id="Namepara" class="para"></p>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="Name">Code</label>
-                                                        <input type="text" class="form-control" name="Code" id="Code" value="{{$data[0]['Code']}}" >
+                                                        <input type="text" class="form-control" data-validation="custom" 
+                                                               data-validation-error-msg="Code should contain Two Capital Alphabets"
+                                                               data-validation-regexp="^[A-Z]{2}$" 
+                                                               name="Code" id="Code" value="{{$data[0]['Code']}}" >
                                                         <p id="Codepara" class="para"></p>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="Name">Alias</label>
-                                                        <input type="text" class="form-control" name="Alias" id="Alias" value="{{$data[0]['Alias']}}">
+                                                        <input type="text" class="form-control" name="Alias" id="Alias"
+                                                               data-validation="custom" 
+                                                               data-validation-error-msg="Code should contain Three Capital Alphabets"
+                                                               data-validation-regexp="^[A-Z]{3}$" 
+                                                               value="{{$data[0]['Alias']}}">
                                                         <p id="Aliaspara" class="para"></p>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="Name">DialCode</label>
-                                                        <input type="tel" class="form-control" name="DialCode" id="DialCode" value="{{$data[0]['DialCode']}}">
+                                                        <input type="tel" class="form-control" name="DialCode" id="DialCode" 
+                                                               data-validation="number" data-validation-allowing="range[1;999]"
+                                                               data-validation-error-msg="Enter Valid Dial Code(1-999)"
+                                                               value="{{$data[0]['DialCode']}}">
                                                         <p id="DialCodepara" class="para"></p>
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label for="Name">IsActive</label>
-                                                        <input type="number" min="0" max="1" class="form-control" name="IsActive" id="IsActive" value="{{$data[0]['IsActive']}}" >
+                                                        <input type="number" min="0" max="1" class="form-control"
+                                                               data-validation="number" data-validation-allowing="range[0;1]"
+                                                               data-validation-error-msg="Active 1 InActive 0"
+                                                               name="IsActive" id="IsActive" value="{{$data[0]['IsActive']}}" >
                                                     </div>
                                                 </div>
                                                 <!-- /.box-body -->
@@ -687,7 +704,10 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.19/jquery.form-validator.min.js"></script>-->
+<script src="/bootstrap/js/formvalidator.min.js"></script>
 <script>
+    $.validate();
 $(function () {
 $("#example1").DataTable();
 $('#example2').DataTable({

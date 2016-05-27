@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
         <script src="/bootstrap/js/jquery.js" type="text/javascript"></script>
         <script src="/bootstrap/js/adminjs.js" type="text/javascript"></script>
-        <script src="/bootstrap/js/customjs.js" type="text/javascript"></script>
+<!--        <script src="/bootstrap/js/customjs.js" type="text/javascript"></script>-->
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -403,17 +403,30 @@
                                                     <input type="hidden" name="Id" value="{{$data[0]['Id']}}">
                                                     <div class="form-group">
                                                         <label for="Name">Continent</label>
-                                                        <input type="text" class="form-control" name="ConName" id="Name" value="{{$data[0]['ConName']}}" >
+                                                        <input type="text" class="form-control" name="ConName"
+                                                               data-validation="custom" 
+                                                               data-validation-error-msg="Enter Valid Continent Name"
+                                                               data-validation-regexp="^([a-zA-Z]+[,.]?[ ]?|[a-zA-Z]+['-]?[()]?)+$"
+                                                               
+                                                               id="Name" value="{{$data[0]['ConName']}}" >
                                                         <p id="Namepara" class="para"></p>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="Name">Code</label>
-                                                        <input type="text" class="form-control" name="Code" id="Code" value="{{$data[0]['Code']}}" >
+                                                        <input type="text" class="form-control" name="Code" id="Code"
+                                                               data-validation="custom"
+                                                               data-validation-error-msg="Code should contain Two Capital Alphabets"
+                                                               data-validation-regexp="^[A-Z]{2}$" 
+                                                               value="{{$data[0]['Code']}}" >
                                                         <p id="Codepara" class="para"></p>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="Name">IsActive</label>
-                                                        <input type="number" min="0" max="1" class="form-control" name="IsActive" id="IsActive" value="{{$data[0]['IsActive']}}" >
+                                                        <input type="number"  class="form-control" name="IsActive" 
+                                                               data-validation="number" data-validation-allowing="range[0;1]"
+                                                               data-validation-error-msg="Active 1 InActive 0"
+                                                               
+                                                               id="IsActive" value="{{$data[0]['IsActive']}}" >
                                                         <p id="Activepara" class="para"></p>
                                                     </div>
                                                 </div>
@@ -662,7 +675,10 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.19/jquery.form-validator.min.js"></script>-->
+<script src="/bootstrap/js/formvalidator.min.js"></script>
 <script>
+    $.validate();
 $(function () {
 $("#example1").DataTable();
 $('#example2').DataTable({
